@@ -29,7 +29,8 @@ jobs:
       - name: Draw graph
         env:
           USGS_API_KEY: ${{ secrets.USGS_API_KEY }}
-        run: python level-graph.py site/ch.png
+        run: |
+          python level-graph.py site/ch.png
           python water-temp-graph.py site/temp.png
           python wind-graph.py site/wind.png
 
