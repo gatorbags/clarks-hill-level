@@ -1,27 +1,39 @@
-# Clarks Hill Lake level graph
+# Clarks Hill Lake graphs
 
-Hourly-updated graph of Thurmond (Clarks Hill) Lake elevation for the
-Augusta Sailing Club website.
+Hourly-updated graphs of Thurmond (Clarks Hill) Lake conditions for the
+Augusta Sailing Club website, drawn from USGS gauge 02193900
+(Thurmond Lake near Plum Branch, SC).
 
-**Image:** https://gatorbags.github.io/clarks-hill-level/ch.png
+## Images
+| Graph | Address |
+|---|---|
+| Lake level | https://gatorbags.github.io/clarks-hill-level/ch.png |
+| Water temperature | https://gatorbags.github.io/clarks-hill-level/temp.png |
+| Wind | https://gatorbags.github.io/clarks-hill-level/wind.png |
+
+Embed on a web page with:
+
+    <img src="https://gatorbags.github.io/clarks-hill-level/ch.png" alt="Clarks Hill Lake level">
 
 ## How it works
 - `.github/workflows/lake-graph.yml` runs every hour on GitHub Actions.
-- It runs `level-graph.py`, which pulls data from the USGS Water Data API
-  (site USGS-02193900, lake elevation) and draws the PNG.
-- The image is published to GitHub Pages at the address above.
+- It runs the three scripts below, which pull data from the USGS Water
+  Data API and draw the PNGs.
+- The images are published to GitHub Pages at the addresses above.
 
-## Lines on the graph
-- This week (15-minute readings)
-- Same week last year
-- Median daily level for the period of record
-- Full pool (330 ft), shown only when the lake is near it
+| Script | Graph | What it shows |
+|---|---|---|
+| `level-graph.py` | Lake level, last 7 days | This week, same week last year, median daily level, full pool (330 ft) when the lake is near it |
+| `water-temp-graph.py` | Water temperature, last 7 days | This week, same week last year, median daily temperature (°F) |
+| `wind-graph.py` | Wind, last 3 days | 15-minute wind speed, arrows every 2 hours showing where the wind is blowing toward, 24-hour high |
 
 ## Maintenance
-- Settings (title, days, full pool, colors) are at the top of `make_graph.py`.
+- Settings (title, number of days, colors, units) are at the top of each script.
 - The optional `USGS_API_KEY` secret raises the USGS rate limit.
   Get a free key at https://api.waterdata.usgs.gov/signup/
-- If the image stops updating, check the **Actions** tab for a failed run.
+- If an image stops updating, check the **Actions** tab for a failed run.
+  The timestamp in the corner of each image shows the last reading.
+- If USGS is down, the previous images stay up until the next good run.
 - A small `keepalive.txt` commit on the 1st of each month stops GitHub
   from pausing the hourly schedule.
 
