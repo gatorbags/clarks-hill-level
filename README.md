@@ -3,7 +3,7 @@
 Hourly-updated graph of Thurmond (Clarks Hill) Lake elevation for the
 Augusta Sailing Club website.
 
-**Image:** https://gatorbags.github.io/clarks-hill-level/thurmond.png
+**Image:** https://gatorbags.github.io/clarks-hill-level/ch.png
 
 ## How it works
 - `.github/workflows/lake-graph.yml` runs every hour on GitHub Actions.
