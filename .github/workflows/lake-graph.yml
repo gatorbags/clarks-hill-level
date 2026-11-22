@@ -29,7 +29,7 @@ jobs:
       - name: Draw graph
         env:
           USGS_API_KEY: ${{ secrets.USGS_API_KEY }}
-        run: python level-graph.py site/thurmond.png
+        run: python level-graph.py site/ch.png
 
       - uses: actions/upload-pages-artifact@v3
         with:
